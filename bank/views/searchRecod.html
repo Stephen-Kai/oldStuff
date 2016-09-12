@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>记录查询</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="bank"/>
+  <link rel="stylesheet" href="../css/amazeui.min.css">
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/amazeui.min.js"></script>
+  <style>
+    .am-list li {
+      width: 100%;
+      display: block;
+      height: 60px;
+      clear: both;
+      margin-bottom: 0;
+      border-top: none
+    }
+
+    .am-list li div{
+      border:none;
+    }
+    .s-img{
+      width: 15%;
+      height: 50px;
+      float:left;
+    }
+    .s-recode{
+       width: 75%;
+      height: 60px;
+      float: left;
+      margin-left: 25px;
+    }
+    .s-recode .s-recode-one,.s-recode .s-recode-two{
+      clear: both;
+      height: 30px;
+      line-height: 30px;
+      font-size: 13px;
+      color: #666
+    }
+  
+    .s-recode .s-recode-one div{margin:auto 0;display: block;text-align: center; line-height: 30px;padding: auto 3px}
+    .s-recode .s-recode-two div{margin:auto 0;display: block;text-align: center; line-height: 30px;width: 29%}
+    .am-ff{margin:auto 20px;}
+    .am-g{min-width: 320px;}
+  </style>
+</head>
+<body>
+  <div class="am-g">
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a onclick="javascript:history.back();">
+                <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+            </a>
+        </div>
+
+        <h1 class="am-header-title">
+            记录查询
+        </h1>
+
+        <div class="am-header-right am-header-nav">
+            <a href="industry.html">
+               <i class="am-header-icon am-icon-home"></i>
+            </a>
+        </div>
+    </header>
+        <div class="am-container" style="margin-top:15px;">
+            <ul class="am-list" id="am-s-list">
+              
+            </ul>
+        </div>
+  </div>
+  <script>
+    $(document).ready(function(){
+       var store = $.AMUI.store;
+       var searchArray = store.get('dataArray');
+       $("#am-s-list").empty();
+       if(searchArray!= null && searchArray.length > 0){
+         $(searchArray.reverse()).each(function(i,n){
+             var liH = '<li><div class="s-img"><img src="'+n.img+'" alt=""></div><div class="s-recode"><div class="s-recode-one"><div class="am-fl">'+n.industry+'</div><div class="am-fr">'+n.name+'</div></div><div class="s-recode-two"><div class="am-fl">'+n.DKJE+'</div><span class="am-ff">'+n.isZT+'</span><div class="am-fr">'+n.date+'</div></div></div></li>';
+             $("#am-s-list").append(liH);
+         })
+       }else{
+         $("#am-s-list").append('<li>你目前没有查询记录</li>');
+       }
+    })
+  </script>
+  </body>
+  </html>

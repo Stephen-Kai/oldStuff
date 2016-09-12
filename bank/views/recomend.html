@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>产品推荐</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="bank"/>
+  <link rel="stylesheet" href="../css/amazeui.min.css">
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/amazeui.min.js"></script>
+  <style>
+  .am-g{
+    min-width:320px;
+  }
+	.am-sx{
+		width: 100%;
+		height: 45px;
+		line-height: 45px;
+    display:inline-block;
+    padding:5px auto;
+    font-weight:normal;
+    font-size:14px;
+    color:#666;
+    z-index:0;
+    background-color:#f4f4f4;
+	}
+
+	.am-sx div{
+     vertical-align:top;
+      float:left;
+	}
+  
+  .am-titlebar .am-titlebar-multi{z-index:1;}
+
+   
+  .am-form-field{
+    margin-top:10px;
+    height:25px;
+    line-height:25px;
+  }
+  .am-sx .am-sx-div{
+    cursor:pointer;
+    color:#666;
+    position:relative;
+  }
+  .sx-div-li{
+    position:absolute;
+    top:30px;
+    left:0;
+    clear:both;
+    width:60%;
+    display:none;
+  }
+  .sx-div-li ul{
+    display:block;
+    background-color:#f4f4f4;
+    height:50px;
+    opacity:0.6;
+    z-index:2;
+  }
+  .sx-div-li ul li{
+    width:100%;
+    display:block;
+    height:24px;
+    line-height:24px;
+    color:#000;
+    z-index:10;
+
+  }
+  .am-3{
+    width:60px;
+  }
+
+  .am-offcanvas-bar{background-color:#FFF;padding:0;width:80%;}
+  .am-offcanvas-content{padding: 0;width: 100%;display: block;color: #444;font-size: 14px;border-bottom: none}
+  .am-offcanvas-content .am-panel a{color: #444;background-color: #f4f4f4;}
+  .am-offcanvas-content .am-panel a span{margin:auto 6px;}
+  .am-offcanvas-content p button{margin: 5px 10px;}
+  .am-offcanvas-content input.am-form-field{width: 100px;vertical-align: top;margin-right: 5px;margin-left: 0;display: none;}
+  .am-offcanvas-content div.am-checkbox-inline{margin-left: 0;}
+  .am-offcanvas-content .m-radio{margin-top:10px;margin-left: 10px;}
+  span.am-badge{margin-bottom: 5px;}
+  div.am-list-item-text{color:#F37B1D;padding-left: 30px;font-size: 14px}
+  .am-list{font-size: 16px;}
+  i.am-icon-angle-right{margin-right: 50px;}
+  .am-list-item-hd{cursor: pointer;}
+  .am-list-item-text-detail{border-top:1px solid #0e90d2;padding: 5px;margin-top: 5px;}
+  .am-list-item-text-detail p{line-height: 1.8;text-indent: 2em;font-size: 13px;height: 100%;clear: both;}
+  </style>
+</head>
+<body>
+  <div class="am-g">
+  <header data-am-widget="header" class="am-header am-header-default">
+      <div class="am-header-left am-header-nav">
+          <a onclick="javascript:history.back();" class="">
+              <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div>
+
+      <h1 class="am-header-title">
+          产品推荐
+      </h1>
+
+      <div class="am-header-right am-header-nav">
+          <a href="industry.html" class="">
+             <i class="am-header-icon am-icon-home"></i>
+          </a>
+      </div>
+  </header>
+    <div class="am-sx">
+        <div>贷款需求(万元)</div>
+        <div class="am-u-sm-2"><input type="text" id="doc-ipt-3-1" class="am-form-field"></div>
+        <div class="am-u-sm-4 am-sx-div" style="z-index:8">
+            <div id="dk_div"><span>贷款主体</span>&nbsp;<i class="am-icon-chevron-down"></i></div>
+             <div class="sx-div-li">
+                  <ul>
+                     <li>企业</li>
+                     <li>个人</li>
+                  </ul>
+              </div>
+        </div>
+
+        <div class="am-3 am-sx-div">
+              <div data-am-offcanvas="{target: '#doc-oc-demo3'}">筛选&nbsp;<i class="am-icon-chevron-down"></i></div>
+        </div>
+
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="z-index:1;width:100%;padding:0 5px;margin:auto 0">
+          <ul class="am-list" id="DK_list">
+           
+          </ul>
+        </div>
+
+    </div>
+
+     
+
+    
+      
+
+    <!-- 侧边栏内容 -->
+    <div id="doc-oc-demo3" class="am-offcanvas" style="border-left:none;">
+      <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content">
+            <ul class="am-list admin-sidebar-list" id="collapase-nav-1" style="padding:5px;">
+
+              <li class="am-panel" data-index="0">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#FDCH-nav'}">
+                   可押房地产(万元) <span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="FDCH-nav">
+                    <li>
+                    <div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="FD-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="FD-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                      </li>
+                    
+                </ul>
+              </li>
+
+              <li class="am-panel" data-index="1">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#SR-nav'}">
+                   私人银行客户<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="SR-nav">
+                    <li><div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="SR-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="SR-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+
+              <li class="am-panel" data-index="2">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#MKH-nav'}">
+                    我行账户开户结算期限(月)<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="MKH-nav">
+                    <li><div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="MKH-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="MKH-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+               <li class="am-panel" data-index="3">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#MZJ-nav'}">
+                    我行资金结算量(万元)<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="MZJ-nav">
+                    <li><div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="MZJ-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="MZJ-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+              <li class="am-panel" data-index="4">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#ITZJ-nav'}">
+                    他行资金结算量(万元)<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="ITZJ-nav">
+                    <li><div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="ITZJ-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="ITZJ-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+
+              <li class="am-panel" data-index="5">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#POS-nav'}">
+                    POS结算(万元)<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="POS-nav">
+                    <li><div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="POS-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="POS-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+
+              <li class="am-panel" data-index="6">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#NSH-nav'}">
+                    纳税期限(月)<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="NSH-nav">
+                    <li><div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="NSH-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="NSH-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+
+              <li class="am-panel" data-index="7">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#NSHE-nav'}">
+                    纳税额(万元)<span></span>
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="NSHE-nav">
+                    <li>
+                    <div class="am-form-group">
+                      <label class="am-checkbox-inline am-checkbox am-warning">
+                        <input type="radio" name="NSHE-radio" value="1" data-am-ucheck>是
+                      </label>
+                      <div class="am-checkbox-inline"><input type="text" class="am-form-field" value=""></div>
+                      <label class="am-checkbox-inline am-checkbox am-warning m-radio">
+                        <input type="radio" name="NSHE-radio" value="0" data-am-ucheck checked>否
+                      </label>
+                    </div>
+                    </li>
+                </ul>
+              </li>
+              <p><button class="am-btn am-btn-danger" id="btn-rest">重置</button><button id="btn-yes" class="am-btn am-btn-success" data-rel="close">确定</button></p>
+            </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <script>
+
+        var insdutys = [
+        {
+          id:"1",
+          name:"保贷通",
+          img:"../img/01.png",
+          type:"优",
+          info:"贷款需求(万元)/可抵押房地产(万元)",
+          detail:"<p>建设银行保贷通是建行专门针对保险公司平台新开发的小微企业信贷品种，该产品借助保险公司资金提高小微企业融资增信能力，开拓了银保合作信贷业务全新模式 ",
+          policy:"评判银行贷款规模是否适度和结构是否合理，可以用一些指标来衡量。主要有：<p>（1）贷款/存款比率。这一指标反映银行资金运用于贷款的比重以及贷款能力的大小。我国商业银行法规定银行的这一比率不得超过75%。</p><p>（2）贷款/资本比率。该比率反映银行资本的盈利能力和银行对贷款损失的承受能力。我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>（3）单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。我国中央银行规定，商业银行对最大客户的贷款余额不得超过银行资本金的15%，最大十家客户的贷款余额不得超过银行资本金的50%。</p><p>（4）中长期贷款比率。这是银行发放的一年期以上的中长期贷款余额与一年期以上的各项存款余额的比率。它反映了银行贷款总体的流动性情况，这一比率越高，流动性越差；反之，流动性越强。根据目前我国中央银行的规定，这一比率必须低于120%。</p>",
+          codn:"<p>一。要有固定收入，要看工资明细；</p><p>二，年满18－50岁，65岁之前还完贷；</p><p>三，如果贷款用于经营或购车，要有担保人和抵押；</p><p>四。没有不良信贷记录。</p><p>月供不高于家庭工资收入的50%；各地建行也不太一样，还是打的去建造问问，司机知道。</p>",
+          em:600,
+          isZT:"企业",
+          isDY:0,
+          isSR:1,
+          isMM:24,
+          isMO:50,
+          isIT:30,
+          isPOS:15,
+          isNSH:12,
+          isNSE:12
+        },
+        {
+          id:"2",
+          name:"税易贷",
+          img:"../img/02.png",
+          type:"可组合",
+          info:"纳税额(万元)  纳税期限(月)",
+          detail:"<p>什么是“税易贷”?“税易贷”是建行对按时足额纳税的小微企业发放的、用于短期生产经营周转的可循环的人民币信用贷款</p> ",
+           policy:"评判银行贷款规模是否适度和结构是否合理，可以用一些指标来衡量。主要有：<p>（1）贷款/存款比率。这一指标反映银行资金运用于贷款的比重以及贷款能力的大小。我国商业银行法规定银行的这一比率不得超过75%。</p><p>（2）贷款/资本比率。该比率反映银行资本的盈利能力和银行对贷款损失的承受能力。我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>（3）单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。我国中央银行规定，商业银行对最大客户的贷款余额不得超过银行资本金的15%，最大十家客户的贷款余额不得超过银行资本金的50%。</p><p>（4）中长期贷款比率。这是银行发放的一年期以上的中长期贷款余额与一年期以上的各项存款余额的比率。它反映了银行贷款总体的流动性情况，这一比率越高，流动性越差；反之，流动性越强。根据目前我国中央银行的规定，这一比率必须低于120%。</p>",
+          codn:"<p>一。要有固定收入，要看工资明细；</p><p>二，年满18－50岁，65岁之前还完贷；</p><p>三，如果贷款用于经营或购车，要有担保人和抵押；</p><p>四。没有不良信贷记录。</p><p>月供不高于家庭工资收入的50%；各地建行也不太一样，还是打的去建造问问，司机知道。</p>",
+          em:500,
+          isZT:"企业",
+          isDY:0,
+          isSR:1,
+          isMM:12,
+          isMO:40,
+          isIT:15,
+          isPOS:12,
+          isNSH:12,
+          isNSE:10
+        },
+         {
+          id:"3",
+          name:"创业贷",
+          img:"../img/04.png",
+          type:"可组合",
+          info:"我行资金结算量(万元)+他行资金结算量  纳税期限(月)",
+          detail:"<p>建行个人住房贷款的归还情况授信依据客户一定时期内在建行个人金融资产（存款或理财产品等）或未还清的建行个人住房贷款的归还情况授信凭借客户质押的在建行的个人金融资产（包括存款、电子类国债或理财产品等）情况授信担保方式信用信用或抵押质押贷款额度普通客户0.1—5万；</p> ",
+           policy:"评判银行贷款规模是否适度和结构是否合理，可以用一些指标来衡量。主要有：<p>（1）贷款/存款比率。这一指标反映银行资金运用于贷款的比重以及贷款能力的大小。我国商业银行法规定银行的这一比率不得超过75%。</p><p>（2）贷款/资本比率。该比率反映银行资本的盈利能力和银行对贷款损失的承受能力。我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>（3）单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。我国中央银行规定，商业银行对最大客户的贷款余额不得超过银行资本金的15%，最大十家客户的贷款余额不得超过银行资本金的50%。</p><p>（4）中长期贷款比率。这是银行发放的一年期以上的中长期贷款余额与一年期以上的各项存款余额的比率。它反映了银行贷款总体的流动性情况，这一比率越高，流动性越差；反之，流动性越强。根据目前我国中央银行的规定，这一比率必须低于120%。</p>",
+          codn:"<p>一。要有固定收入，要看工资明细；</p><p>二，年满18－50岁，65岁之前还完贷；</p><p>三，如果贷款用于经营或购车，要有担保人和抵押；</p><p>四。没有不良信贷记录。</p><p>月供不高于家庭工资收入的50%；各地建行也不太一样，还是打的去建造问问，司机知道。</p>",
+          em:800,
+          isZT:"企业&个人",
+          isDY:1,
+          isSR:1,
+          isMM:0,
+          isMO:0,
+          isIT:20,
+          isPOS:0,
+          isNSH:12,
+          isNSE:5
+        }
+        ,
+         {
+          id:"4",
+          name:"POS贷",
+          img:"../img/04.png",
+          type:"可组合",
+          info:"纳税期限(月) POS结算(万元)",
+          detail:"<p>微企业信用贷款试点，并开展“重塑信用品质、振兴实体经济”主题活动，继续加大支小支农倾斜力度。</p> ",
+           policy:"评判银行贷款规模是否适度和结构是否合理，可以用一些指标来衡量。主要有：<p>（1）贷款/存款比率。这一指标反映银行资金运用于贷款的比重以及贷款能力的大小。我国商业银行法规定银行的这一比率不得超过75%。</p><p>（2）贷款/资本比率。该比率反映银行资本的盈利能力和银行对贷款损失的承受能力。我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>（3）单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。我国中央银行规定，商业银行对最大客户的贷款余额不得超过银行资本金的15%，最大十家客户的贷款余额不得超过银行资本金的50%。</p><p>（4）中长期贷款比率。这是银行发放的一年期以上的中长期贷款余额与一年期以上的各项存款余额的比率。它反映了银行贷款总体的流动性情况，这一比率越高，流动性越差；反之，流动性越强。根据目前我国中央银行的规定，这一比率必须低于120%。</p>",
+          codn:"<p>一。要有固定收入，要看工资明细；</p><p>二，年满18－50岁，65岁之前还完贷；</p><p>三，如果贷款用于经营或购车，要有担保人和抵押；</p><p>四。没有不良信贷记录。</p><p>月供不高于家庭工资收入的50%；各地建行也不太一样，还是打的去建造问问，司机知道。</p>",
+          em:300,
+          isZT:"企业",
+          isDY:1,
+          isSR:1,
+          isMM:6,
+          isMO:5,
+          isIT:5,
+          isPOS:8,
+          isNSH:12,
+          isNSE:5
+        },
+        {
+          id:"5",
+          name:"小额抵押贷",
+          img:"../img/05.png",
+          type:"可组合",
+          info:"",
+          detail:"<p>如建设银行温州分行推行年审制模式的信用贷款，创新推出了小企业小额无抵押贷款产品，截至2月21日，已累计完成202户，贷款金额1亿元。</p> ",
+           policy:"评判银行贷款规模是否适度和结构是否合理，可以用一些指标来衡量。主要有：<p>（1）贷款/存款比率。这一指标反映银行资金运用于贷款的比重以及贷款能力的大小。我国商业银行法规定银行的这一比率不得超过75%。</p><p>（2）贷款/资本比率。该比率反映银行资本的盈利能力和银行对贷款损失的承受能力。我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>（3）单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。我国中央银行规定，商业银行对最大客户的贷款余额不得超过银行资本金的15%，最大十家客户的贷款余额不得超过银行资本金的50%。</p><p>（4）中长期贷款比率。这是银行发放的一年期以上的中长期贷款余额与一年期以上的各项存款余额的比率。它反映了银行贷款总体的流动性情况，这一比率越高，流动性越差；反之，流动性越强。根据目前我国中央银行的规定，这一比率必须低于120%。</p>",
+          codn:"<p>一。要有固定收入，要看工资明细；</p><p>二，年满18－50岁，65岁之前还完贷；</p><p>三，如果贷款用于经营或购车，要有担保人和抵押；</p><p>四。没有不良信贷记录。</p><p>月供不高于家庭工资收入的50%；各地建行也不太一样，还是打的去建造问问，司机知道。</p>",
+          em:100,
+          isZT:"个人",
+          isDY:1,
+          isSR:0,
+          isMM:0,
+          isMO:0,
+          isIT:20,
+          isPOS:0,
+          isNSH:12,
+          isNSE:3
+        },
+        {
+          id:"6",
+          name:"传统抵押贷",
+          img:"../img/06.png",
+          type:"可组合",
+          info:"",
+          detail:"<p>我市银行业金融机构正积极开展小微企业信用贷款试点，过去因风险较大而被金融机构视作畏途的信用贷款，逐渐成为小微企业融资的重要方式。</p> ",
+           policy:"评判银行贷款规模是否适度和结构是否合理，可以用一些指标来衡量。主要有：<p>（1）贷款/存款比率。这一指标反映银行资金运用于贷款的比重以及贷款能力的大小。我国商业银行法规定银行的这一比率不得超过75%。</p><p>（2）贷款/资本比率。该比率反映银行资本的盈利能力和银行对贷款损失的承受能力。我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>（3）单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。我国中央银行规定，商业银行对最大客户的贷款余额不得超过银行资本金的15%，最大十家客户的贷款余额不得超过银行资本金的50%。</p><p>（4）中长期贷款比率。这是银行发放的一年期以上的中长期贷款余额与一年期以上的各项存款余额的比率。它反映了银行贷款总体的流动性情况，这一比率越高，流动性越差；反之，流动性越强。根据目前我国中央银行的规定，这一比率必须低于120%。</p>",
+           codn:"<p>一。要有固定收入，要看工资明细；</p><p>二，年满18－50岁，65岁之前还完贷；</p><p>三，如果贷款用于经营或购车，要有担保人和抵押；</p><p>四。没有不良信贷记录。</p><p>月供不高于家庭工资收入的50%；各地建行也不太一样，还是打的去建造问问，司机知道。</p>",
+          em:200,
+          isZT:"个人",
+          isDY:1,
+          isSR:0,
+          isMM:0,
+          isMO:0,
+          isIT:0,
+          isPOS:0,
+          isNSH:6,
+          isNSE:7
+        }
+        ];
+
+      var store = $.AMUI.store;
+       store.set('insdutysArray',insdutys);
+        disPlayInfo(insdutys);
+        $(document).ready(function(){
+          $(window).off('resize.offcanvas.amui');
+
+          /*贷款主体*/
+          $('#dk_div').click(function(){
+              $('.sx-div-li').show();
+          })
+          $('.sx-div-li ul li').click(function(){
+            $('#dk_div').children('span').text($(this).text());
+            $('.sx-div-li').hide();
+              disPlayInfo(contrastDKZTJE());
+          })
+
+
+          $("#doc-ipt-3-1").blur(function(){
+             disPlayInfo(contrastDKZTJE());
+          
+          })
+          /*筛选*/
+
+          $('input[type="radio"]').click(function(){
+            if($(this).val() == '1'){
+                if($(this).parent().siblings('div').length == 1){
+                  $(this).parent().siblings('div').children().show();
+                }
+            }else{
+               if($(this).parent().siblings('div').length == 1){
+                  $(this).parent().siblings('div').children().hide();
+                }
+            }
+          })
+
+            $("#collapase-nav-1").children('li').click(function(){
+               var i = $(this).attr('data-index');
+               if(i>0){
+                 var $i_1 = $(this).prevAll('li');
+                 $($i_1).each(function(i,n){
+                     $(n).css("background-color","#FFF");
+                     $(n).children('a').css("color","#F37B1D");
+                     if($(n).find('input[type="radio"]:checked').val() == 1){
+                       if($(n).find('.am-form-field').length == 1){
+                          $(n).children('a').find('span').text('条件：'+$(n).find('.am-form-field').val());
+                       }else{
+                         $(n).children('a').find('span').text('条件：是');
+                       }
+                     }else{
+                       $(n).children('a').find('span').text('条件：否');
+                     }
+                 })
+               }
+            })
+
+             $(".am-form-field").blur(function(){  
+                var boosParent = $(this).parents(".am-panel");
+                boosParent.css("background-color","#FFF");
+                boosParent.children('a').css("color","#F37B1D");
+                boosParent.children('a').find('span').text('条件：'+ $(this).val());
+             })
+
+
+              $("#btn-rest").click(function(){
+                 $('#collapase-nav-1').children('li').css("background-color","#f4f4f4;");
+                 $('#collapase-nav-1').children('li').children('a').css("color","#444");
+                 $('#collapase-nav-1').children('li').children('a').find('span').empty();
+              })
+
+              $("#btn-yes").click(function(){
+                var DKJE = $.trim($("#doc-ipt-3-1").val());
+                var DKZT = $.trim($("#dk_div").children('span').text());
+                var is_FDCH = $("#FDCH-nav").find('input[type="radio"]:checked').val();
+                var FDCH = $.trim($("#FDCH-nav").find('input[type="text"]').val());
+                var is_SR = $("#SR-nav").find('input[type="radio"]:checked').val();
+                var is_MKH = $("#MKH-nav").find('input[type="radio"]:checked').val();
+                var MKH = $.trim($("#MKH-nav").find('input[type="text"]').val());
+                var is_MZJ = $("#MZJ-nav").find('input[type="radio"]:checked').val();
+                var MZJ = $.trim($("#MZJ-nav").find('input[type="text"]').val());
+                var is_ITZJ = $("#ITZJ-nav").find('input[type="radio"]:checked').val();
+                var ITZJ = $.trim($("#ITZJ-nav").find('input[type="text"]').val());
+                var is_POS = $("#POS-nav").find('input[type="radio"]:checked').val();
+                var POS = $.trim($("#POS-nav").find('input[type="text"]').val());
+                var is_NSH = $("#NSH-nav").find('input[type="radio"]:checked').val();
+                var NSH = $.trim($("#NSH-nav").find('input[type="text"]').val());
+                var is_NSHE = $("#NSHE-nav").find('input[type="radio"]:checked').val();
+                var NSHE = $.trim($("#NSHE-nav").find('input[type="text"]').val());
+                var returnArray = [];
+                var resuleArray = [];
+                 returnArray =  contrastDKZTJE();
+                 if(returnArray.length > 0){
+                   for(var i = 0;i<returnArray.length;i++){
+                     if(returnArray[i].isDY == is_FDCH){
+                        resuleArray.push(returnArray[i]);
+                      }
+                   }
+                 }else{
+                    for(var j = 0;j<insdutys.length;j++){
+                      if(insdutys[j].isDY == is_FDCH){
+                          resuleArray.push(insdutys[j]);
+                      } 
+                    }
+                 }
+                
+                disPlayInfo(resuleArray);
+                //$('#collapase-nav-1').collapse('close');//关闭折叠
+                $('#doc-oc-demo3').click();
+              })
+
+        })
+
+
+    function tabDis(id){
+       $("#"+id).siblings('div').find('.am-list-item-text-detail').show();
+       $("#"+id).parents('li').siblings("li").find('.am-list-item-text-detail').hide();
+    }
+    /*对比贷款主体金额*/
+    function contrastDKZTJE(){
+      var returnArray = [];
+      var reSultArray = [];
+      var DKZT = $('#dk_div').children('span').text();
+      var DKJE = $.trim($("#doc-ipt-3-1").val());
+      if(DKJE != null && DKJE.length > 0){
+        for(var i = 0;i<insdutys.length;i++){
+          if(insdutys[i].em <= DKJE){
+              returnArray.push(insdutys[i]);
+          }     
+        }
+      }
+      if(DKZT != null && DKZT != '贷款主体'){
+        if(returnArray.length > 0){
+          for(var j = 0;j<returnArray.length;j++){
+            if(returnArray[j].isZT.indexOf(DKZT) != -1){
+                reSultArray.push(returnArray[j]);
+            }     
+         }
+       }else{
+         for(var j = 0;j<insdutys.length;j++){
+           if(insdutys[j].isZT.indexOf(DKZT)!= -1){
+                 reSultArray.push(insdutys[j]);
+           }     
+         }   
+       }
+      }else{
+        reSultArray = returnArray;
+      }
+      
+      return reSultArray;
+    }
+
+
+
+    function disPlayInfo(arr){
+      $('#DK_list').empty();
+      $(arr).each(function(i,n){
+        var lih = '<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left"><span class="am-badge am-badge-success am-radius am-fr">'+n.type+'</span> <div id="hd'+i+'" class="am-list-item-hd" onclick="tabDis(this.id)"> <img width="48px" height="48px" src="'+n.img+'" alt="'+n.name+'"/>'+n.name+'&nbsp;<i class="am-icon-angle-right am-fr am-margin-right"></i></div><div class="am-u-sm-12  am-list-main"><div class="am-list-item-text" style="color:#F37B1D;">'+n.info+'</div><br/><div class="am-list-item-text-detail" style="display: none;"><p class="am-list-item-text">'+n.detail+'<button class="am-btn am-btn-primary am-btn-sm am-fr" onclick="tuclick('+n.id+');">确定</button>  </p></div></div></li>';
+        $('#DK_list').append(lih);
+      })
+    }
+
+
+    function tuclick(id){
+      store.set('arrId', id);
+      var DKJE = $.trim($("#doc-ipt-3-1").val());
+      var DKZT = $.trim($("#dk_div").children('span').text());
+      var is_FDCH = $("#FDCH-nav").find('input[type="radio"]:checked').val();
+      var FDCH = $.trim($("#FDCH-nav").find('input[type="text"]').val());
+      var is_SR = $("#SR-nav").find('input[type="radio"]:checked').val();
+      var is_MKH = $("#MKH-nav").find('input[type="radio"]:checked').val();
+      var MKH = $.trim($("#MKH-nav").find('input[type="text"]').val());
+      var is_MZJ = $("#MZJ-nav").find('input[type="radio"]:checked').val();
+      var MZJ = $.trim($("#MZJ-nav").find('input[type="text"]').val());
+      var is_ITZJ = $("#ITZJ-nav").find('input[type="radio"]:checked').val();
+      var ITZJ = $.trim($("#ITZJ-nav").find('input[type="text"]').val());
+      var is_POS = $("#POS-nav").find('input[type="radio"]:checked').val();
+      var POS = $.trim($("#POS-nav").find('input[type="text"]').val());
+      var is_NSH = $("#NSH-nav").find('input[type="radio"]:checked').val();
+      var NSH = $.trim($("#NSH-nav").find('input[type="text"]').val());
+      var is_NSHE = $("#NSHE-nav").find('input[type="radio"]:checked').val();
+      var NSHE = $.trim($("#NSHE-nav").find('input[type="text"]').val());
+
+      store.set('DKJE', DKJE);
+      store.set('DKZT', DKZT);
+      store.set('is_FDCH', is_FDCH); 
+      store.set('FDCH', FDCH);
+      store.set('is_SR', is_SR);
+      store.set('is_MKH', is_MKH); 
+      store.set('MKH', MKH);
+      store.set('is_MZJ', is_MZJ);
+      store.set('MZJ', MZJ); 
+      store.set('is_ITZJ', is_ITZJ);
+      store.set('ITZJ', ITZJ);
+      store.set('is_POS', is_POS); 
+      store.set('POS', POS); 
+      store.set('is_NSH', is_NSH); 
+      store.set('NSH', NSH); 
+      store.set('is_NSHE', is_NSHE); 
+      store.set('NSHE', NSHE);
+      window.location.href="productInfomation.html";
+    }
+    </script>
+  
+	</body>
+	</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>行业查询</title>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="bank"/>
+  <link rel="stylesheet" href="../css/amazeui.min.css">
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/amazeui.min.js"></script>
+  <style>
+    .seachKeyList{
+      width: 95%;
+      height: auto;
+      position: absolute;
+      top:45px;
+      left: 0;
+    }
+    .seachKeyList ul li{
+      width: 100%;
+      min-height: 40px;
+      height: auto;
+      line-height: 1.8;
+      border-bottom: 1px solid #f2f2f2;
+      display: block;
+      padding: 5px;
+      
+    }
+
+    .seachKeyList ul li.active{
+      background-color: #f4f4f4;
+    }
+    .seachKeyList ul li .seachWord{
+      font-weight: 800pt;
+      color: #222;
+      cursor: pointer;
+    }
+    .seachKeyList ul li .seachInfo{
+        display: none;
+        border-top: 1px solid #0e90d2;
+        margin: 10px auto;
+        padding:8px auto;
+        padding-left: 15px;
+        font-size: 13px;
+        color: #666;
+
+     }
+  </style>
+</head>
+<body>
+  <div class="am-g">
+  <header data-am-widget="header" class="am-header am-header-default">
+      <div class="am-header-left am-header-nav">
+          <a onclick="javascript:void(0);" class="">
+
+              <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""/>
+          </a>
+      </div>
+
+      <h1 class="am-header-title">
+          行业查询
+      </h1>
+
+      <div class="am-header-right am-header-nav">
+          <a href="searchRecod.html" class="">
+             <i class="am-header-icon am-icon-search"></i>
+          </a>
+      </div>
+  </header>
+
+
+        <div class="am-container" style="margin-top:15px;">
+              <div class="am-input-group am-input-group-warning">
+                 <span class="am-input-group-label"><i class="am-icon-search"></i></span>
+                <input type="text" class="am-form-field" id="searchWord" placeholder="银行关键字查询，例如农业、中药">
+                <div class="seachKeyList">  
+                    <ul>
+                         
+                   </ul>    
+                </div>
+              </div>
+        </div>
+
+
+
+        <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+          <div class="am-modal-dialog">
+            <div class="am-modal-hd">温馨提示</div>
+            <div class="am-modal-bd">
+              此演示版本需要非IE浏览器支持！
+            </div>
+            <div class="am-modal-footer">
+              <span class="am-modal-btn">确定</span>
+            </div>
+          </div>
+        </div>
+  </div>
+  <script>
+    var keyWordArray = ['电器电缆制造','医药医疗生产','农业种植','苏宁电器商场'];
+    var keyWordArrayInfo = ['主要面向电线电缆制造企业，主要从事电线电缆生产操作、电线电缆加工工艺编制、质量检验及质量控制、电线电缆设计、电线电缆生产设备维修等职业岗位群。','医药是关于人类同疾病作斗争和增进健康的科学。它的对象是社会的人。因此，医学与社会科学、医学伦理学具有密切关系。','农业系统的生产力不是单一指标，不同于一般的单位面积产量，而是一组指标体系。在门类上包括单位时间作物、蔬菜、果树、林木等植物生产的初级生产力和家畜、家禽、鱼类等动物生产的次级生产力，还应考虑土壤肥力的变化状况。',
+    '2004年7月苏宁电器股份有限公司成功上市。2013年9月，包括苏宁银行在内的9家民营银行名称获得国家工商总局核准。'];
+     var keyWordArrayIndex = ['d1','y2','n3','d4'];
+     var keyIndexED = [];
+        $(document).ready(function(){
+ 
+          $("#searchWord").get(0).addEventListener("input",function(o){  
+             var searchVal = o.target.value;
+             if(searchVal != null && searchVal != '' && searchVal.length > 0){
+                for(var i = 0;i<keyWordArray.length;i++){
+                    if(keyWordArray[i].indexOf(searchVal) != -1){
+                        if(idInEd(keyWordArrayIndex[i])){
+                          keyIndexED.push(keyWordArrayIndex[i]);
+                          $('.seachKeyList ul').append('<li id="'+keyWordArrayIndex[i]+'" onclick="onClick(this.id);"> <div class="seachWord">'+keyWordArray[i]+'</div><div class="seachInfo">'+keyWordArrayInfo[i]+'<div class="am-cf"><button  title="'+keyWordArrayIndex[i]+'" class="am-btn am-btn-success am-fr" onclick="onBtn(this.title)">确定</button></div></div>');
+                        }
+                     }
+                }
+            }else{
+              $('.seachKeyList ul').empty();
+            }
+          },false);  
+    })
+    
+    function idInEd(id){
+      var iSe = true;
+      if(keyIndexED.length != 0){
+        for(var j =0;j<keyIndexED.length;j++){
+            if(keyIndexED[j] == id){
+              iSe = false;
+            }
+        }
+      }
+      return iSe;
+        
+    }
+
+    function onClick(id){
+      $('#'+id).addClass('active');
+      $('#'+id).siblings().removeClass('active');
+      $('#'+id).children('.seachInfo').show();
+      $('#'+id).siblings().children('.seachInfo').hide();
+    }
+
+
+    function onBtn(t){
+      var searchVal = $('#'+t).children('.seachWord').html();
+      var store = $.AMUI.store;
+      if (store.enabled) {
+        store.set('industry', searchVal);
+      }else{
+          $('#my-alert').modal('open');
+          return
+      }
+      window.location.href ='productinfo.html';
+    }
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>产品信息</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="bank" />
+    <link rel="stylesheet" href="../css/amazeui.min.css">
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/amazeui.min.js"></script>
+    <style type="text/css">
+    h4 {
+        margin: 0;
+    }
+    
+    .contentinfo {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .contentinfo p{
+        line-height: 1.5;
+        font-size: 14px;
+        color: #666;
+        text-indent: 2em;
+        padding: 8px 5px;
+    }
+    
+    div[name="data-tab-panel-2"] {
+        margin-top: 10px;
+    }
+    
+    table td{font-size: 14px;}
+    td:first-child {
+        color: #777;
+        width: 45%;
+    }
+    
+    td:nth-child(2) {
+        text-align: center;
+        width: 55%;
+        font-weight: bold;
+    }
+
+    .am-tab-panel h4{
+        font-weight: 500pt;
+        font-size: 16px;
+        margin: 15px 8px;
+        color: #222;
+
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="am-g">
+        <header data-am-widget="header" class="am-header am-header-default">
+            <div class="am-header-left am-header-nav">
+                <a onclick="javascript:history.back();" class="">
+                    <img class="am-header-icon-custom" src="data:image/svg+xml;charset&#x3D;utf-8,&lt;svg xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; viewBox&#x3D;&quot;0 0 12 20&quot;&gt;&lt;path d&#x3D;&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill&#x3D;&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt="" />
+                </a>
+            </div>
+            <h1 class="am-header-title">
+          产品信息
+      </h1>
+            <div class="am-header-right am-header-nav">
+                <a href="industry.html">
+                    <i class="am-header-icon am-icon-home"></i>
+                </a>
+            </div>
+        </header>
+        <div class="am-container" style="margin-top:10px;">
+            <div data-am-widget="tabs" class="am-tabs am-tabs-default">
+                <ul class="am-tabs-nav am-cf">
+                    <li class="am-active am-round"><a href="[data-tab-panel-0]">查询条件</a></li>
+                    <li class="am-round"><a href="[data-tab-panel-1]">产品信息</a></li>
+                    <li class="am-round"><a href="[data-tab-panel-2]">授信政策</a></li>
+                </ul>
+                <div class="am-tabs-bd">
+                    <div data-tab-panel-0 class="am-tab-panel am-active">
+                        <table class="am-table">
+                            <tbody>
+                                <tr>
+                                    <td>所属行业：</td>
+                                    <td id="td1"></td>
+                                </tr>
+                                <tr>
+                                    <td>推荐产品：</td>
+                                    <td id="td2"></td>
+                                </tr>
+                                <tr>
+                                    <td>营业收入（万元）：</td>
+                                    <td>&lt;=5000</td>
+                                </tr>
+                                <tr>
+                                    <td>从业人员（人）：</td>
+                                    <td>&lt;=20</td>
+                                </tr>
+                                <tr>
+                                    <td>他行资金结算量（万元）：</td>
+                                    <td id="td3"></td>
+                                </tr>
+                                <tr>
+                                    <td>POS结算（万元）：</td>
+                                    <td id="td4"></td>
+                                </tr>
+                                <tr>
+                                    <td>纳税期限（月）：</td>
+                                    <td id="td5"></td>
+                                </tr>
+                                <tr>
+                                    <td>纳税主体：</td>
+                                    <td id="td6"></td>
+
+                                </tr>
+                                <tr>
+                                    <td>贷款需求（万元）：</td>
+                                    <td id="td7"></td>
+                                </tr>
+                                <tr>
+                                    <td>我行结算账户开户期限（月）：</td>
+                                    <td id="td8">3</td>
+                                </tr>
+                                <tr>
+                                    <td>我行资金结算量（万元）：</td>
+                                    <td id="td9"></td>
+                                </tr>
+                                <tr>
+                                    <td>纳税额（万元）：</td>
+                                    <td id="td10"></td>
+                                </tr>
+                                <tr>
+                                    <td>私人银行客户：</td>
+                                    <td id="td11"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div data-tab-panel-1 class="am-tab-panel">
+                        <button type="button" class="am-btn am-btn-primary am-btn-block" id="introduction">产品简介</button>
+                        <div>
+                            <h4>信贷政策</h4>
+                            <div class="contentinfo"> </div>
+                              <h4>信贷政策</h4>
+                            <div class="contentinfo">  </div>
+                        </div>
+                        <button type="button" class="am-btn am-btn-primary am-btn-block" id="detailedList">材料清单</button>
+                        <div>
+                            <div class="contentinfo">
+                            <p>我国中央银行根据《巴塞尔协议》规定的国际标准，确定商业银行资本总额与加权风险资产之比不得低于8%，核心资本与加权风险资产之比不得低于4%。</p><p>单个企业贷款比率。该比率是指银行给最大一家客户或最大十家客户的贷款占银行资本金的比率，它反映了银行贷款的集中程度和风险状况。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-tab-panel-2 class="am-tab-panel ">
+                        <h4>信贷政策</h4>
+                        <div name="data-tab-panel-2" class="contentinfo">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    $(document).ready(function() {
+        var store = $.AMUI.store;
+        var insdutysArray = store.get('insdutysArray');
+        var DKJE = store.get('DKJE');
+        var DKZT = store.get('DKZT');
+        var is_FDCH = store.get('is_FDCH');
+        var FDCH = store.get('FDCH');
+        var is_SR = store.get('is_SR');
+        var is_MKH = store.get('is_MKH');
+        var MKH = store.get('MKH');
+        var is_MZJ = store.get('is_MZJ');
+        var MZJ = store.get('MZJ');
+        var is_ITZJ = store.get('is_ITZJ');
+        var ITZJ = store.get('ITZJ');
+        var is_POS = store.get('is_POS');
+        var POS = store.get('POS');
+        var is_NSH = store.get('is_NSH');
+        var NSH = store.get('NSH');
+        var is_NSHE = store.get('is_NSHE');
+        var NSHE = store.get('NSHE');
+
+
+        var arrId = store.get('arrId');
+
+        console.log(insdutysArray);
+        var insdutryValue;
+        $(insdutysArray).each(function(i,n){
+            if(n.id == arrId){
+                insdutryValue = n;
+            }
+        })
+        console.log(insdutryValue);
+        
+
+        /*赋值*/
+        $("#td1").text(store.get('industry'));
+        $("#td2").text(insdutryValue.name);
+        $("#td3").text(isOrNoVal(is_ITZJ,ITZJ));
+        $("#td4").text(isOrNoVal(is_POS,POS));
+        $("#td5").text(isOrNoVal(is_NSH,NSH));
+        $("#td6").text(DKZT);
+        $("#td7").text(DKJE);
+        $("#td8").text(isOrNoVal(is_MKH,MKH));
+        $("#td9").text(isOrNoVal(is_MZJ,MZJ));
+        $("#td10").text(isOrNoVal(is_NSHE,NSHE));
+        $("#td11").text(isOrNoVal(is_SR,''));
+
+        $('div.contentinfo').eq(0).html(insdutryValue.codn);
+        $('div.contentinfo').eq(1).html(insdutryValue.detail);
+        $('div.contentinfo').eq(3).html(insdutryValue.policy);
+
+        var searchData = {
+                industry: store.get('industry'),
+                name: insdutryValue.name,
+                img: insdutryValue.img,
+                DKJE: DKJE,
+                isZT: DKZT,
+                date: thisDate()
+            };
+        var dataArray = store.get('dataArray');
+        if(dataArray == null || dataArray.length == 0 || dataArray == undefined){
+            dataArray = [];
+            dataArray.push(searchData);
+        }else{
+            dataArray.push(searchData);
+        }
+         
+        store.set('dataArray', dataArray);
+       
+       
+    });
+    $("#detailedList").next('div').hide();
+    $("#introduction,#detailedList").on('click', function() {
+        $(this).next('div').slideToggle(400);
+    })
+
+    function isOrNoVal(v,val){
+        if(v == '1'){
+            if(val != null && val.length > 0){
+                return val;
+            }else{
+                return '是';
+            }
+           
+        }else{
+            return '否';
+        }
+    }
+
+    function thisDate() {
+        var date = new Date();
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        return y + "-" + m + "-" + d;
+    }
+    </script>
+</body>
+
+</html>
